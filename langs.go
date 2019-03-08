@@ -1,5 +1,6 @@
 package main
 
+/*
 var langs = map[string]string{
 	"de": "la",
 	"de": "nl",
@@ -43,4 +44,4 @@ var langs = map[string]string{
 
 func ValidLangPair(sourceLang, targetLang) {
 
-}
+}*/

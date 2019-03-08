@@ -55,6 +55,9 @@ func processJS(js string) []Translation {
 	}
 	translations := make([]Translation, 0, len(sourceElements))
 	for i, sourceElement := range sourceElements {
+		if sourceElement == "" {
+			continue //skip empty elements
+		}
 		translation := Translation{
 			textSourceLang: sourceElement,
 			textTargetLang: targetElements[i],
@@ -104,8 +107,6 @@ func parseNewExpression(node ast.Expression) []string {
 	return elements
 }
 
-const allowedCombinations = map[string]string{}
-
 func main() {
 	if len(os.Args) < 2 {
 		log.Fatal("Please provide a search term")
@@ -121,7 +122,7 @@ func main() {
 	translations := processJS(js)
 
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"Source", "Target"})
+	table.SetHeader([]string{"en", "de"})
 
 	for _, translation := range translations {
 		table.Append([]string{translation.textSourceLang, translation.textTargetLang})
